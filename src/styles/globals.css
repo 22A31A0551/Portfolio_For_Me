@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-text selection:bg-accent/30;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-card/60 backdrop-blur-md border border-white/10;
+  }
+  
+  .glass-hover {
+    @apply hover:bg-card/80 hover:border-white/20 transition-all duration-300;
+  }
+
+  .neon-text {
+    @apply text-accent drop-shadow-[0_0_10px_rgba(59,130,246,0.5)];
+  }
+
+  .neon-border {
+    @apply border-accent/50 shadow-[0_0_15px_rgba(59,130,246,0.3)];
+  }
+
+  .grid-background {
+    background-image: 
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: grid-drift 30s linear infinite;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+}
+
+/* Moving Background Animations */
+@keyframes grid-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+@keyframes blob-float-1 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes blob-float-2 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(-30px, 40px) scale(0.98); }
+  66% { transform: translate(40px, -20px) scale(1.05); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes blob-float-3 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(20px, 20px) scale(1.03); }
+  66% { transform: translate(-30px, -30px) scale(0.97); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob-1 {
+  animation: blob-float-1 25s infinite alternate ease-in-out;
+  will-change: transform;
+}
+
+.animate-blob-2 {
+  animation: blob-float-2 30s infinite alternate ease-in-out;
+  will-change: transform;
+}
+
+.animate-blob-3 {
+  animation: blob-float-3 28s infinite alternate ease-in-out;
+  will-change: transform;
+}
