@@ -24,8 +24,8 @@ export const projects: Project[] = [
     image: "/project-images/cyber-threat.png",
     tags: ["Python", "React", "JS", "HTML5/CSS3"],
     category: "Python",
-    github: "https://github.com/22A31A0551",
-    demo: "https://github.com/22A31A0551",
+    github: "https://github.com/22A31A0551/Cyber_Risk_Assessment-Threat_Intelligence_Platform_Using_Python",
+    demo: "https://github.com/22A31A0551/Cyber_Risk_Assessment-Threat_Intelligence_Platform_Using_Python",
   },
   {
     title: "ProjectNexus – Project Maintenance & Service Management Platform",
@@ -33,7 +33,7 @@ export const projects: Project[] = [
     image: "/project-images/project-nexus.png",
     tags: ["Java", "Spring Boot", "React JS", "MySQL", "Spring Security", "REST APIs"],
     category: "Full Stack",
-    github: "https://github.com/22A31A0551",
+    github: "https://github.com/22A31A0551/ProjectNexus",
     demo: "https://project-nexus-orcin-one.vercel.app/",
   }
 ];
