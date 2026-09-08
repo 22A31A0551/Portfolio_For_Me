@@ -2,21 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
 import { Github, Linkedin } from 'lucide-react';
+import { LeetCodeIcon, HackerRankIcon } from '../icons';
 import { Container } from '../layout/Container';
-
-// Custom Social Icons (SVGs)
-const LeetCodeIcon = () => (
-  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-    <path d="M13.483 0a1.374 1.374 0 0 0-.961.414l-4.62 4.62q.013.012.025.025l-2.102 2.103a1.374 1.374 0 0 0 0 1.943l1.103 1.102a1.374 1.374 0 0 0 1.943 0l1.118-1.118a.303.303 0 0 1 .428 0 .303.303 0 0 1 0 .428l-1.118 1.118a1.374 1.374 0 0 0 0 1.943l4.512 4.512a1.374 1.374 0 0 0 1.943 0l1.102-1.102a1.374 1.374 0 0 0 0-1.943l-4.512-4.512a1.374 1.374 0 0 0-1.943 0l-1.102 1.102a.303.303 0 0 1-.428 0 .303.303 0 0 1 0-.428l1.102-1.102a1.374 1.374 0 0 0 0-1.943l-1.102-1.102a1.374 1.374 0 0 0-1.943 0L7.697 6.42a1.374 1.374 0 0 0 0-1.943L12.317.414A1.374 1.374 0 0 0 13.483 0z" />
-    <path d="M16.018 14.223a1.403 1.403 0 0 0-1.984 0l-1.422 1.422a1.403 1.403 0 0 0 0 1.984l3.14 3.14a1.403 1.403 0 0 0 1.984 0l1.422-1.422a1.403 1.403 0 0 0 0-1.984l-3.14-3.14z" />
-  </svg>
-);
-
-const HackerRankIcon = () => (
-  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-    <path d="M10.99 2.18L5.41 5.39v12.42l5.58 3.22 5.58-3.22V5.39L10.99 2.18zM15.34 16.5l-4.35 2.51-4.35-2.51V8.51l4.35-2.51 4.35 2.51v7.99z" />
-  </svg>
-);
 
 // Minimalist Premium Tech SVGs
 const ReactIcon = () => (
@@ -96,17 +83,45 @@ const Hero = () => {
 
 
             <div className="flex items-center gap-6">
-              <a href="#" className="text-text/40 hover:text-accent transition-all hover:scale-110" title="GitHub">
+              <a
+                href="https://github.com/22A31A0551"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text/40 hover:text-accent transition-all hover:scale-110"
+                title="GitHub - 22A31A0551 (VENKATA VAMSI PEMMADA)"
+                aria-label="GitHub Profile"
+              >
                 <Github size={28} />
               </a>
-              <a href="#" className="text-text/40 hover:text-accent transition-all hover:scale-110" title="LinkedIn">
+              <a
+                href="https://www.linkedin.com/in/venkatavamsipemmada/"
+                target="_blank"
+                rel="noopener"
+                className="text-text/40 hover:text-accent transition-all hover:scale-110"
+                title="Venkata Vamsi Pemmada | LinkedIn"
+                aria-label="Venkata Vamsi Pemmada | LinkedIn"
+              >
                 <Linkedin size={28} />
               </a>
-              <a href="#" className="text-text/40 hover:text-accent transition-all hover:scale-110" title="LeetCode">
-                <LeetCodeIcon />
+              <a
+                href="https://leetcode.com/u/Venkata-Vamsi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text/40 hover:text-accent transition-all hover:scale-110"
+                title="LeetCode - Venkata-Vamsi"
+                aria-label="LeetCode Profile"
+              >
+                <LeetCodeIcon size={28} />
               </a>
-              <a href="#" className="text-text/40 hover:text-accent transition-all hover:scale-110" title="HackerRank">
-                <HackerRankIcon />
+              <a
+                href="https://www.hackerrank.com/profile/22A31A0551"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text/40 hover:text-accent transition-all hover:scale-110"
+                title="HackerRank - 22A31A0551"
+                aria-label="HackerRank Profile"
+              >
+                <HackerRankIcon size={28} />
               </a>
             </div>
           </motion.div>

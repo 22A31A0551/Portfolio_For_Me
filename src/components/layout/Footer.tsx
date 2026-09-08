@@ -23,8 +23,9 @@ const Footer = () => {
                 key={social.name}
                 href={social.url}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 className="text-text/60 hover:text-accent transition-colors"
+                title={social.name}
                 aria-label={social.name}
               >
                 <Icon size={20} />

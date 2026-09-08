@@ -1,20 +1,26 @@
-import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
+import { LeetCodeIcon, HackerRankIcon } from '../components/icons';
 
 export const socials = [
   {
     name: "GitHub",
-    url: "https://github.com/",
+    url: "https://github.com/22A31A0551",
     icon: Github,
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/",
+    url: "https://www.linkedin.com/in/venkatavamsipemmada/",
     icon: Linkedin,
   },
   {
-    name: "Twitter",
-    url: "https://twitter.com/",
-    icon: Twitter,
+    name: "LeetCode",
+    url: "https://leetcode.com/u/Venkata-Vamsi/",
+    icon: LeetCodeIcon,
+  },
+  {
+    name: "HackerRank",
+    url: "https://www.hackerrank.com/profile/22A31A0551",
+    icon: HackerRankIcon,
   },
   {
     name: "Email",
@@ -22,3 +28,4 @@ export const socials = [
     icon: Mail,
   },
 ];
+
