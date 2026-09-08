@@ -5,15 +5,10 @@ import {
   Github, 
   FolderGit, 
   Briefcase, 
-  Award, 
   GraduationCap, 
   Calendar, 
   Building, 
   MapPin, 
-  Code2, 
-  Database, 
-  Layout, 
-  Terminal, 
   ShieldCheck, 
   Sparkles 
 } from 'lucide-react';
@@ -159,9 +154,15 @@ const Portfolio = () => {
 
   return (
     <section id="portfolio" className="py-24 relative overflow-hidden">
-      {/* Dynamic Background Glowing Orbs */}
-      <div className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] -z-10 animate-pulse" />
-      <div className="absolute bottom-1/3 -left-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[100px] -z-10" />
+      {/* Dynamic Background Glowing Orbs (Hardware-accelerated) */}
+      <div 
+        className="absolute top-1/3 -right-1/4 w-[500px] h-[500px] rounded-full pointer-events-none -z-10 animate-pulse"
+        style={{ background: 'radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%)' }}
+      />
+      <div 
+        className="absolute bottom-1/3 -left-1/4 w-[400px] h-[400px] rounded-full pointer-events-none -z-10"
+        style={{ background: 'radial-gradient(circle, rgba(168, 85, 247, 0.10) 0%, transparent 70%)' }}
+      />
 
       <Container>
         <SectionTitle 
@@ -215,7 +216,7 @@ const Portfolio = () => {
               >
                 {projects.length > 0 ? (
                   projects.map((project) => (
-                    <Card key={project.title} className="p-6 overflow-hidden flex flex-col h-full group relative border border-white/5 bg-[#0e1726]/30 backdrop-blur-md hover:border-accent/20 transition-all duration-300">
+                    <Card key={project.title} className="p-6 overflow-hidden flex flex-col h-full group relative border border-white/5 bg-[#0e1726]/70 hover:border-accent/25 transition-all duration-300">
                       <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                       
                       {/* Compact Card Header */}
@@ -289,7 +290,7 @@ const Portfolio = () => {
                       <Briefcase size={12} />
                     </div>
 
-                    <Card className="p-8 border border-white/5 bg-[#0e1726]/30 backdrop-blur-md relative overflow-hidden group-hover:border-accent/20 transition-all duration-300">
+                    <Card className="p-8 border border-white/5 bg-[#0e1726]/70 relative overflow-hidden group-hover:border-accent/25 transition-all duration-300">
                       <div className="absolute top-0 right-0 px-4 py-1.5 rounded-bl-xl bg-accent/10 border-l border-b border-accent/20 text-[10px] uppercase font-bold text-accent tracking-widest">
                         {exp.type}
                       </div>
@@ -341,7 +342,7 @@ const Portfolio = () => {
                 className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
               >
                 {certifications.map((cert, idx) => (
-                  <Card key={idx} className="p-6 border border-white/5 bg-[#0e1726]/30 backdrop-blur-md h-full flex flex-col justify-between group hover:border-accent/30 transition-all duration-300 relative overflow-hidden">
+                  <Card key={idx} className="p-6 border border-white/5 bg-[#0e1726]/70 h-full flex flex-col justify-between group hover:border-accent/30 transition-all duration-300 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.02] to-transparent pointer-events-none" />
                     
                     <div>
@@ -386,7 +387,7 @@ const Portfolio = () => {
                 className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto"
               >
                 {techSkills.map((skill, idx) => (
-                  <Card key={idx} className="p-6 border border-white/5 bg-[#0e1726]/30 backdrop-blur-md hover:border-accent/20 transition-all duration-300 flex flex-col items-center text-center relative group overflow-hidden">
+                  <Card key={idx} className="p-6 border border-white/5 bg-[#0e1726]/70 hover:border-accent/25 transition-all duration-300 flex flex-col items-center text-center relative group overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-tr from-accent/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     
                     {/* Icon container with high-impact color pulse */}

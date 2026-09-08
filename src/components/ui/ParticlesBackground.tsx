@@ -6,14 +6,15 @@ const ParticlesBackground = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
     let animationFrameId: number;
+    let isVisible = true;
     let particles: Array<{
       x: number;
       y: number;
-      z: number;      // Depth parameter (0.5 to 2.5) for 3D parallax depth
+      z: number;
       size: number;
       speedX: number;
       speedY: number;
@@ -28,114 +29,105 @@ const ParticlesBackground = () => {
 
     const initParticles = () => {
       particles = [];
-      // Optimum node count for constellation mesh density
-      const count = Math.min(Math.floor((canvas.width * canvas.height) / 28000), 45);
-      
+      const isMobile = canvas.width < 768;
+      // High-performance particle counts: 18 on mobile, 30 on desktop
+      const count = isMobile ? 18 : 30;
+
       for (let i = 0; i < count; i++) {
-        const z = Math.random() * 2 + 0.5; // Z depth for 3D parallax
+        const z = Math.random() * 1.8 + 0.6;
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           z: z,
-          size: z * 2.2, // Larger sizes for foreground nodes
-          speedX: (Math.random() - 0.5) * 0.22 * z, // Foreground nodes move faster
-          speedY: (Math.random() - 0.5) * 0.22 * z,
-          opacity: Math.min(0.85, z * 0.35), // Foreground nodes are more opaque
+          size: z * 1.6,
+          speedX: (Math.random() - 0.5) * 0.2 * z,
+          speedY: (Math.random() - 0.5) * 0.2 * z,
+          opacity: Math.min(0.7, z * 0.3),
         });
       }
     };
 
+    const connectionDistance = 110;
+    const connectionDistSq = connectionDistance * connectionDistance;
+
     const drawParticles = () => {
+      if (!isVisible) {
+        animationFrameId = requestAnimationFrame(drawParticles);
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Update particle positions and wrap around borders
-      particles.forEach((p) => {
+
+      const pCount = particles.length;
+
+      // Update particle positions
+      for (let i = 0; i < pCount; i++) {
+        const p = particles[i];
         p.x += p.speedX;
         p.y += p.speedY;
 
-        if (p.x < -20) p.x = canvas.width + 20;
-        if (p.x > canvas.width + 20) p.x = -20;
-        if (p.y < -20) p.y = canvas.height + 20;
-        if (p.y > canvas.height + 20) p.y = -20;
-      });
-
-      const connectionDistance = 120;
-
-      // 1. Draw triangular mesh polygons (trio connections as seen in reference image)
-      ctx.lineWidth = 0.5;
-      for (let i = 0; i < particles.length; i++) {
-        const p1 = particles[i];
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dist12 = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-          if (dist12 > connectionDistance) continue;
-
-          for (let k = j + 1; k < particles.length; k++) {
-            const p3 = particles[k];
-            const dist23 = Math.hypot(p2.x - p3.x, p2.y - p3.y);
-            const dist31 = Math.hypot(p3.x - p1.x, p3.y - p1.y);
-
-            if (dist23 < connectionDistance && dist31 < connectionDistance) {
-              // Calculate opacity based on average distance of all three links
-              const avgDist = (dist12 + dist23 + dist31) / 3;
-              const opacity = (1 - avgDist / connectionDistance) * 0.04; // Soft 4% mesh fill opacity
-              
-              ctx.beginPath();
-              ctx.moveTo(p1.x, p1.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.lineTo(p3.x, p3.y);
-              ctx.closePath();
-              // Glowing white translucent polygonal mesh
-              ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-              ctx.fill();
-            }
-          }
-        }
+        if (p.x < -15) p.x = canvas.width + 15;
+        else if (p.x > canvas.width + 15) p.x = -15;
+        if (p.y < -15) p.y = canvas.height + 15;
+        else if (p.y > canvas.height + 15) p.y = -15;
       }
 
-      // 2. Draw dual-line connections (network links)
-      for (let i = 0; i < particles.length; i++) {
+      // Draw connections with squared-distance pre-check (O(N^2), zero Math.sqrt)
+      for (let i = 0; i < pCount; i++) {
         const p1 = particles[i];
-        for (let j = i + 1; j < particles.length; j++) {
+        for (let j = i + 1; j < pCount; j++) {
           const p2 = particles[j];
-          const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < connectionDistance) {
-            const opacity = (1 - dist / connectionDistance) * 0.18 * Math.min(p1.opacity, p2.opacity);
+          if (distSq < connectionDistSq) {
+            const distRatio = 1 - distSq / connectionDistSq;
+            const opacity = distRatio * 0.16 * Math.min(p1.opacity, p2.opacity);
+
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
-            ctx.lineWidth = 0.85;
+            ctx.strokeStyle = `rgba(147, 197, 253, ${opacity})`; // Subtle electric blue/white
+            ctx.lineWidth = 0.75;
             ctx.stroke();
           }
         }
       }
 
-      // 3. Draw nodes (glowing white spheres)
-      particles.forEach((p) => {
-        // Soft glowing border halo around the nodes
+      // Draw node spheres with glowing halos
+      for (let i = 0; i < pCount; i++) {
+        const p = particles[i];
+
+        // Soft halo
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * 1.8, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity * 0.15})`;
+        ctx.arc(p.x, p.y, p.size * 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(147, 197, 253, ${p.opacity * 0.18})`;
         ctx.fill();
 
-        // Core solid white node
+        // Solid core
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity * 0.8})`;
         ctx.fill();
-      });
+      }
 
       animationFrameId = requestAnimationFrame(drawParticles);
     };
 
-    window.addEventListener('resize', resizeCanvas);
+    const handleVisibilityChange = () => {
+      isVisible = !document.hidden;
+    };
+
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     resizeCanvas();
     drawParticles();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -143,10 +135,10 @@ const ParticlesBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-45"
-      style={{ mixBlendMode: 'screen' }}
+      className="fixed inset-0 pointer-events-none z-0 opacity-40 will-change-transform"
     />
   );
 };
 
 export { ParticlesBackground };
+

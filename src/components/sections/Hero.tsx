@@ -52,9 +52,15 @@ const Hero = () => {
       {/* Background Effects */}
       <div className="absolute inset-0 grid-background opacity-20 -z-10" />
 
-      {/* Gradient Blur Circles */}
-      <div className="absolute top-1/4 -left-1/4 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] -z-10" />
-      <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] -z-10" />
+      {/* High-Performance Radial Glows */}
+      <div 
+        className="absolute top-1/4 -left-1/4 w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
+        style={{ background: 'radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%)' }} 
+      />
+      <div 
+        className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
+        style={{ background: 'radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%)' }} 
+      />
 
       <Container>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -113,7 +119,10 @@ const Hero = () => {
             className="relative hidden lg:block"
           >
             {/* Glowing Background Effect */}
-            <div className="absolute inset-0 bg-accent/20 rounded-full blur-[100px] animate-pulse" />
+            <div 
+              className="absolute -inset-4 rounded-full animate-pulse pointer-events-none"
+              style={{ background: 'radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, transparent 70%)' }} 
+            />
 
             <div className="relative z-10 w-full aspect-square glass rounded-full overflow-hidden border-4 border-white/10 group shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-purple-500/20" />
@@ -131,7 +140,9 @@ const Hero = () => {
                 <motion.img
                   src="/hero-illustration.png"
                   alt="Developer Illustration"
-                  className="w-[85%] h-[85%] object-contain rounded-full drop-shadow-[0_0_30px_rgba(59,130,246,0.3)] z-10"
+                  loading="eager"
+                  fetchPriority="high"
+                  className="w-[85%] h-[85%] object-contain rounded-full z-10 will-change-transform"
                   animate={{ 
                     scale: [1, 1.03, 1],
                     y: [0, -8, 0]
