@@ -10,7 +10,9 @@ import {
   Building, 
   MapPin, 
   ShieldCheck, 
-  Sparkles 
+  Sparkles,
+  FileText,
+  Download 
 } from 'lucide-react';
 import { Container } from '../layout/Container';
 import { SectionTitle } from '../ui/SectionTitle';
@@ -72,6 +74,7 @@ const experienceTimeline = [
       "Developing and maintaining backend services and REST APIs using Java and Spring Boot",
       "Implementing authentication and authorization using Spring Security",
       "Managing application data and optimizing queries using PostgreSQL",
+      "Developing and integrating a real-time chat application as part of the SaaS platform",
       "Collaborating on cloud infrastructure and services on AWS"
     ]
   },
@@ -108,7 +111,7 @@ const techSkills = [
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState<string>('Projects');
 
-  const tabs = ['Projects', 'Experience', 'Certificates', 'Tech Stack'];
+  const tabs = ['Projects', 'Experience', 'Certificates', 'Tech Stack', 'Resume'];
 
   return (
     <section id="portfolio" className="py-24 relative overflow-hidden">
@@ -152,6 +155,7 @@ const Portfolio = () => {
                 {tab === 'Experience' && <Briefcase size={16} />}
                 {tab === 'Certificates' && <GraduationCap size={16} />}
                 {tab === 'Tech Stack' && <Sparkles size={16} />}
+                {tab === 'Resume' && <FileText size={16} />}
                 {tab}
               </span>
             </button>
@@ -362,6 +366,210 @@ const Portfolio = () => {
                     </p>
                   </Card>
                 ))}
+              </motion.div>
+            )}
+
+            {/* RESUME TAB */}
+            {activeTab === 'Resume' && (
+              <motion.div
+                key="resume-tab"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+                className="max-w-5xl mx-auto space-y-8"
+              >
+                {/* Header Action Card */}
+                <Card className="p-6 md:p-8 border border-white/10 bg-[#0e1726]/80 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-80 h-80 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+                  
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+                    <div>
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold uppercase tracking-wider mb-3">
+                        <span className="w-2 h-2 rounded-full bg-accent animate-ping" />
+                        Curriculum Vitae
+                      </div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                        Venkata Vamsi Pemmada
+                      </h3>
+                      <p className="text-text/60 text-sm md:text-base max-w-xl mb-4 leading-relaxed">
+                        Aspiring Software Engineer with hands-on experience in developing full-stack applications using Java, Spring Boot, React.js, and SQL.
+                      </p>
+                      <div className="flex flex-wrap gap-2 text-xs text-text/50 font-medium">
+                        <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-text/70">B.Tech CSE (8.25 CGPA)</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-text/70">OperaBox Intern</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-text/70">Kakinada, AP, India</span>
+                      </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
+                      <a
+                        href="/resume.pdf"
+                        download="Venkata_Vamsi_Pemmada_Resume.pdf"
+                        className="w-full sm:w-auto"
+                      >
+                        <Button size="lg" className="w-full gap-2 shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+                          <Download size={18} />
+                          Download Resume
+                        </Button>
+                      </a>
+                      <a
+                        href="/resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full sm:w-auto"
+                      >
+                        <Button variant="outline" size="lg" className="w-full gap-2 border-white/10 hover:border-white/30">
+                          <ExternalLink size={18} />
+                          Open PDF in New Tab
+                        </Button>
+                      </a>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* PDF Document Frame & Viewer */}
+                <div className="rounded-2xl border border-white/10 bg-[#0b1320] shadow-2xl overflow-hidden">
+                  {/* Mac-style Window Header Bar */}
+                  <div className="px-4 py-3 bg-[#0f172a] border-b border-white/10 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
+                      <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
+                      <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block" />
+                      <span className="ml-3 text-xs font-mono text-text/60 flex items-center gap-1.5">
+                        <FileText size={14} className="text-accent" />
+                        resume.pdf
+                      </span>
+                    </div>
+                    
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs text-text/40 hidden sm:inline">106 KB • PDF Document</span>
+                      <a
+                        href="/resume.pdf"
+                        download="Venkata_Vamsi_Pemmada_Resume.pdf"
+                        className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-text/70 hover:text-white transition-colors"
+                        title="Download PDF"
+                      >
+                        <Download size={15} />
+                      </a>
+                      <a
+                        href="/resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-text/70 hover:text-white transition-colors"
+                        title="Open in new tab"
+                      >
+                        <ExternalLink size={15} />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Embedded PDF Viewer */}
+                  <div className="relative w-full h-[650px] md:h-[850px] bg-slate-900">
+                    <iframe
+                      src="/resume.pdf#toolbar=1"
+                      title="Venkata Vamsi Pemmada - Resume PDF"
+                      className="w-full h-full border-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Structured Highlights (Recruiter-friendly summary cards) */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Education */}
+                  <Card className="p-6 border border-white/5 bg-[#0e1726]/70">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2.5 rounded-xl bg-accent/10 text-accent">
+                        <GraduationCap size={20} />
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold text-white">Education</h4>
+                        <p className="text-xs text-text/50">Academic Credentials</p>
+                      </div>
+                    </div>
+                    <div className="space-y-3.5 text-xs">
+                      <div>
+                        <p className="font-semibold text-white">B.Tech in Computer Science</p>
+                        <p className="text-text/60">Pragati Engineering College • 2022–2026</p>
+                        <p className="text-accent font-medium mt-0.5">CGPA: 8.25</p>
+                      </div>
+                      <div className="pt-2.5 border-t border-white/5">
+                        <p className="font-semibold text-white">Intermediate (MPC)</p>
+                        <p className="text-text/60">Aditya Junior College • 2020–2022</p>
+                        <p className="text-accent font-medium mt-0.5">Percentage: 93.9%</p>
+                      </div>
+                      <div className="pt-2.5 border-t border-white/5">
+                        <p className="font-semibold text-white">SSC</p>
+                        <p className="text-text/60">Little Buds School • 2019–2020</p>
+                        <p className="text-accent font-medium mt-0.5">Percentage: 91.1%</p>
+                      </div>
+                    </div>
+                  </Card>
+
+                  {/* Experience */}
+                  <Card className="p-6 border border-white/5 bg-[#0e1726]/70">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400">
+                        <Briefcase size={20} />
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold text-white">Experience</h4>
+                        <p className="text-xs text-text/50">Industry & Projects</p>
+                      </div>
+                    </div>
+                    <div className="space-y-3 text-xs">
+                      <div>
+                        <p className="font-semibold text-white">Java Developer Intern</p>
+                        <p className="text-purple-400 font-medium">OperaBox • July 2026 - Present</p>
+                        <p className="text-text/60 mt-1 leading-relaxed">
+                          SaaS platform for CA firms using Java, Spring Boot, PostgreSQL, real-time chat & AWS.
+                        </p>
+                      </div>
+                      <div className="pt-2.5 border-t border-white/5">
+                        <p className="font-semibold text-white">Featured Projects</p>
+                        <p className="text-text/60 mt-0.5">• Gold Loan Management System</p>
+                        <p className="text-text/60">• ProjectNexus Platform</p>
+                      </div>
+                    </div>
+                  </Card>
+
+                  {/* Certifications */}
+                  <Card className="p-6 border border-white/5 bg-[#0e1726]/70">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400">
+                        <ShieldCheck size={20} />
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold text-white">Certifications</h4>
+                        <p className="text-xs text-text/50">Verified Qualifications</p>
+                      </div>
+                    </div>
+                    <div className="space-y-2.5 text-xs">
+                      <div className="flex items-start gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
+                        <div>
+                          <p className="font-semibold text-white">Java & Python Certifications</p>
+                          <p className="text-text/50">Infosys SpringBoard</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2 pt-1 border-t border-white/5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
+                        <div>
+                          <p className="font-semibold text-white">Java Full Stack Certification</p>
+                          <p className="text-text/50">AICTE</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2 pt-1 border-t border-white/5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
+                        <div>
+                          <p className="font-semibold text-white">Java Programming Fundamentals</p>
+                          <p className="text-text/50">edX</p>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
               </motion.div>
             )}
 
