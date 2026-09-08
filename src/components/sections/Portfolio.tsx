@@ -26,7 +26,9 @@ import {
   PythonIcon, 
   MySQLIcon, 
   HTMLIcon, 
-  CSSIcon 
+  CSSIcon,
+  DockerIcon,
+  PostmanIcon
 } from '../icons';
 
 // Certifications constants
@@ -90,15 +92,17 @@ const experienceTimeline = [
 
 // Tech stack skills
 const techSkills = [
-  { name: "Java", icon: <JavaIcon size={34} />, level: "92%", desc: "Core & Enterprise APIs" },
-  { name: "Spring Boot", icon: <SpringIcon size={34} />, level: "90%", desc: "REST APIs & Backend" },
-  { name: "Microservices", icon: <MicroservicesIcon size={34} />, level: "88%", desc: "Distributed Architecture" },
-  { name: "React", icon: <ReactIcon size={34} />, level: "92%", desc: "Frontend Interfaces" },
-  { name: "JavaScript", icon: <JSIcon size={34} />, level: "88%", desc: "Modern ES6+ Logic" },
-  { name: "MySQL", icon: <MySQLIcon size={34} />, level: "88%", desc: "Relational Databases" },
-  { name: "Python", icon: <PythonIcon size={34} />, level: "85%", desc: "Scripts & Analytics" },
-  { name: "HTML5", icon: <HTMLIcon size={34} />, level: "95%", desc: "Structure & Semantics" },
-  { name: "CSS3", icon: <CSSIcon size={34} />, level: "90%", desc: "Responsive Layouts" }
+  { name: "Java", icon: <JavaIcon size={34} />, desc: "Core & Enterprise APIs" },
+  { name: "Spring Boot", icon: <SpringIcon size={34} />, desc: "REST APIs & Backend" },
+  { name: "Microservices", icon: <MicroservicesIcon size={34} />, desc: "Distributed Architecture" },
+  { name: "Docker", icon: <DockerIcon size={34} />, desc: "Containerization & Images" },
+  { name: "Postman", icon: <PostmanIcon size={34} />, desc: "API Testing & Automation" },
+  { name: "React", icon: <ReactIcon size={34} />, desc: "Frontend Interfaces" },
+  { name: "JavaScript", icon: <JSIcon size={34} />, desc: "Modern ES6+ Logic" },
+  { name: "MySQL", icon: <MySQLIcon size={34} />, desc: "Relational Databases" },
+  { name: "Python", icon: <PythonIcon size={34} />, desc: "Scripts & Analytics" },
+  { name: "HTML5", icon: <HTMLIcon size={34} />, desc: "Structure & Semantics" },
+  { name: "CSS3", icon: <CSSIcon size={34} />, desc: "Responsive Layouts" }
 ];
 
 const Portfolio = () => {
@@ -338,41 +342,24 @@ const Portfolio = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.3 }}
-                className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
+                className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto"
               >
                 {techSkills.map((skill, idx) => (
-                  <Card key={idx} className="p-6 border border-white/5 bg-[#0e1726]/70 hover:border-accent/25 transition-all duration-300 flex flex-col items-center text-center relative group overflow-hidden">
+                  <Card key={idx} className="p-6 border border-white/5 bg-[#0e1726]/70 hover:border-accent/25 transition-all duration-300 flex flex-col items-center text-center relative group overflow-hidden hover:-translate-y-1">
                     <div className="absolute inset-0 bg-gradient-to-tr from-accent/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     
                     {/* Icon container with high-impact color pulse */}
-                    <div className="w-16 h-16 rounded-2xl bg-white/[0.02] border border-white/5 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-accent/5 group-hover:border-accent/10 transition-all duration-300 relative shadow-inner">
+                    <div className="w-16 h-16 rounded-2xl bg-white/[0.02] border border-white/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-accent/5 group-hover:border-accent/10 transition-all duration-300 relative shadow-inner">
                       {skill.icon}
                     </div>
 
-                    <h4 className="text-base font-bold text-white mb-1 group-hover:text-accent transition-colors">
+                    <h4 className="text-base font-bold text-white mb-1.5 group-hover:text-accent transition-colors">
                       {skill.name}
                     </h4>
                     
-                    <p className="text-[10px] text-text/40 font-semibold mb-4 tracking-wider uppercase">
+                    <p className="text-[11px] text-text/50 font-medium leading-relaxed tracking-wide">
                       {skill.desc}
                     </p>
-
-                    {/* Compact glowing linear progress bar */}
-                    <div className="w-full space-y-1.5 mt-auto">
-                      <div className="flex justify-between text-[10px] font-bold text-text/40">
-                        <span>PROFICIENCY</span>
-                        <span className="text-accent group-hover:scale-105 transition-transform">{skill.level}</span>
-                      </div>
-                      <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: skill.level }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1.2, delay: idx * 0.05 }}
-                          className="h-full bg-gradient-to-r from-accent to-purple-500 rounded-full"
-                        />
-                      </div>
-                    </div>
                   </Card>
                 ))}
               </motion.div>
