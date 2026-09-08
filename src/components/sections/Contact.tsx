@@ -82,7 +82,7 @@ const Contact = () => {
                 <div>
                   <div className="text-sm text-text/40 mb-1">Socials</div>
                   <div className="text-lg font-medium">
-                    Available on LinkedIn & Twitter
+                    Available on LinkedIn, GitHub & LeetCode
                   </div>
                 </div>
               </div>
