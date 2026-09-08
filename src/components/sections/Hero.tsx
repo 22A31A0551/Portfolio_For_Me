@@ -2,36 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
 import { Github, Linkedin } from 'lucide-react';
-import { LeetCodeIcon, HackerRankIcon } from '../icons';
+import { LeetCodeIcon, HackerRankIcon, ReactIcon, JavaIcon, SpringIcon, JSIcon } from '../icons';
 import { Container } from '../layout/Container';
-
-// Minimalist Premium Tech SVGs
-const ReactIcon = () => (
-  <svg viewBox="-11.5 -10.23174 23 20.46348" className="w-8 h-8 text-[#61DAFB]" fill="none" stroke="currentColor" strokeWidth="1" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="0" cy="0" r="2.05" fill="#61DAFB"/>
-    <ellipse rx="11" ry="4.2"/>
-    <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
-    <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
-  </svg>
-);
-
-const JavaIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#E22D30]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M2 15.5c0 1.38 1.13 2.5 2.5 2.5h10c1.38 0 2.5-1.12 2.5-2.5v-7h-15v7zm15-6h1.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5H17v-5zm-9-6c0-1.1.9-2 2-2s2 .9 2 2v2H8V3.5zm4 0c0-1.1.9-2 2-2s2 .9 2 2v2h-4V3.5z" />
-  </svg>
-);
-
-const SpringIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#6DB33F]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2C6.48 2 2 6.48 2 12c0 2.76 1.12 5.26 2.93 7.07l14.14-14.14C17.26 3.12 14.76 2 12 2zm7.07 17.07C20.88 17.26 22 14.76 22 12c0-5.52-4.48-10-10-10-2.76 0-5.26 1.12-7.07 2.93L19.07 19.07z" />
-  </svg>
-);
-
-const JSIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#F7DF1E]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M3 3h18v18H3V3zm11.38 12.81c-.26-.81-.84-1.39-1.89-1.39-1.07 0-1.63.56-1.63 1.25 0 .84.58 1.15 1.54 1.56.96.41 2.21.84 2.21 2.22 0 1.5-1.18 2.28-2.81 2.28-1.69 0-2.61-.75-2.93-1.92h1.49c.21.58.62.99 1.44.99.78 0 1.3-.39 1.3-1.05 0-.75-.46-1.03-1.39-1.42-.96-.4-2.31-.81-2.31-2.28 0-1.33 1.05-2.19 2.58-2.19 1.5 0 2.37.69 2.68 1.75h-1.42zm4.84-2.94h1.52v7.1c0 1.58-.87 2.28-2.47 2.28-1.58 0-2.39-.73-2.58-1.88h1.46c.16.58.54.96 1.12.96.6 0 .97-.31.97-.99v-7.47z"/>
-  </svg>
-);
 
 const Hero = () => {
   return (
