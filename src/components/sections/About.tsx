@@ -84,9 +84,9 @@ const About = () => {
                 <Award size={24} />
               </div>
               <h4 className="text-xl font-bold text-white mb-2">Internships</h4>
-              <span className="text-accent font-semibold text-base mb-1">1 Internship</span>
-              <p className="text-white/80 text-sm font-medium leading-relaxed">Python Technology Stack</p>
-              <p className="text-text/40 text-xs mt-0.5">Infosys Springboard</p>
+              <span className="text-accent font-semibold text-base mb-1">2 Internships</span>
+              <p className="text-white/80 text-sm font-medium leading-relaxed">OperaBox & Infosys</p>
+              <p className="text-text/40 text-xs mt-0.5">Java & Python Development</p>
             </Card>
           </motion.div>
 

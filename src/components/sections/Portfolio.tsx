@@ -49,6 +49,20 @@ const certifications = [
 // Experience Timeline data
 const experienceTimeline = [
   {
+    role: "Java Developer Intern",
+    company: "OperaBox",
+    location: "Remote",
+    period: "July 2026 - Present",
+    type: "Internship",
+    description: "Working as a Java Developer Intern on a SaaS platform developed for CA firms, using Java, Spring Boot, PostgreSQL, and AWS.",
+    highlights: [
+      "Developing and maintaining backend services and REST APIs using Java and Spring Boot",
+      "Implementing authentication and authorization using Spring Security",
+      "Managing application data and optimizing queries using PostgreSQL",
+      "Collaborating on cloud infrastructure and services on AWS"
+    ]
+  },
+  {
     role: "Python Technology Stack Intern",
     company: "Infosys Springboard",
     location: "Remote / Hybrid",
@@ -59,19 +73,6 @@ const experienceTimeline = [
       "Built technology stack dependency visualization dashboards",
       "Worked with Pandas & NumPy for heavy data transformations",
       "Gained deep hands-on Python development experience"
-    ]
-  },
-  {
-    role: "Full Stack Developer",
-    company: "Freelance",
-    location: "Remote",
-    period: "April 2024 - Present",
-    type: "Freelance",
-    description: "Developing high-fidelity responsive websites, full-stack web applications, and database management engines for various clients. Engineering sleek interactive frontends in React.js and robust backend services using Java and Spring Boot.",
-    highlights: [
-      "Designed and launched several commercial static business websites, including HVS-Growth",
-      "Developed full-stack database solutions utilizing Spring Boot, React.js, and MySQL/MongoDB",
-      "Collaborated closely with clients to deliver optimized, search-engine-friendly, and responsive software tools"
     ]
   }
 ];
@@ -229,15 +230,15 @@ const Portfolio = () => {
                         </span>
                       </div>
 
-                      <h3 className="text-lg font-bold mb-2 text-white group-hover:text-accent transition-colors line-clamp-1">
+                      <h3 className="text-lg font-bold mb-2 text-white group-hover:text-accent transition-colors line-clamp-3 min-h-[4.5rem] leading-snug" title={project.title}>
                         {project.title}
                       </h3>
                       
-                      <p className="text-text/60 text-xs mb-4 leading-relaxed flex-grow line-clamp-4">
+                      <p className="text-text/60 text-xs mb-4 leading-relaxed flex-grow line-clamp-5">
                         {project.description}
                       </p>
 
-                      <div className="flex gap-1.5 mb-5 flex-wrap">
+                      <div className="flex gap-1.5 mb-5 flex-wrap min-h-[2.75rem] content-start">
                         {project.tags.map(tag => (
                           <span key={tag} className="text-[8px] uppercase tracking-wider px-2 py-0.5 rounded bg-accent/10 text-accent font-bold border border-accent/10">
                             {tag}
